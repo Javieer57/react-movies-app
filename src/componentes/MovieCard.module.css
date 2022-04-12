@@ -2,6 +2,19 @@
 	text-align: center;
 }
 
+.movie_poster {
+	background-color: #999;
+	width: 100%;
+	position: relative;
+	padding-top: 150%;
+}
+
+.movie_poster img {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
 .movie_title {
 	margin: 10px 0 0;
 	font-weight: normal;

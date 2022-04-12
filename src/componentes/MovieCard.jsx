@@ -6,7 +6,9 @@ const MovieCard = ({ movie }) => {
 	return (
 		<li className={styles.movie_card}>
 			<Link to='/Movie'>
-				<img src={imgUrl} alt='' aria-hidden='true' />
+				<div className={styles.movie_poster}>
+					<img src={imgUrl} alt='' aria-hidden='true' />
+				</div>
 				<h3 className={styles.movie_title}>{movie.title}</h3>
 			</Link>
 		</li>

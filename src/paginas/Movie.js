@@ -12,7 +12,11 @@ const Movie = () => {
 
 	return (
 		<article className={'container_sm ' + styles.movie_container}>
-			<img className={styles.movie_poster} src={imgUrl} alt='' aria-hidden='true' />
+			<div className={styles.movie_poster}>
+				<div className={styles.movie_poster_aspect_ratio}>
+					<img src={imgUrl} alt='' aria-hidden='true' />
+				</div>
+			</div>
 
 			<div className={styles.movie_description}>
 				<h1 className={styles.movie_title}>{movie.title}</h1>

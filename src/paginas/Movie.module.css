@@ -9,6 +9,21 @@
 .movie_title {
 	margin-top: 0;
 }
+.movie_poster {
+	width: 100%;
+}
+
+.movie_poster_aspect_ratio {
+	position: relative;
+	padding-top: 150%;
+	background-color: #999;
+}
+
+.movie_poster_aspect_ratio img {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
 
 @media screen and (min-width: 600px) {
 	.movie_container {
