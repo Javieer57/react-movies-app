@@ -13,7 +13,7 @@ export const NuevaApp = () => {
 			</header>
 			<main className='container'>
 				<Switch>
-					<Route path='/movie'>
+					<Route path='/movie/:movieId'>
 						<Movie />
 					</Route>
 					<Route path='/'>

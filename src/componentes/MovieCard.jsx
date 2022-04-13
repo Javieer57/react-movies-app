@@ -1,11 +1,11 @@
 import styles from './MovieCard.module.css';
-import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const MovieCard = ({ movie }) => {
 	const imgUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 	return (
 		<li className={styles.movie_card}>
-			<Link to='/Movie'>
+			<Link to={'/movie/' + movie.id}>
 				<div className={styles.movie_poster}>
 					<img src={imgUrl} alt='' aria-hidden='true' />
 				</div>
