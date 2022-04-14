@@ -1,6 +1,15 @@
-let api_url = 'https://api.themoviedb.org/3';
+const api_url = 'https://api.themoviedb.org/3';
 
-export function apicall(config) {
+/**
+ * Call to themoviedb API
+ * @param {String} config path parameters
+ * @returns api json response
+ */
+export function apiCall(config) {
+	/* Llamada a la API
+	- fetch() acepta como segundo parámetro un objeto con las opciones de la petición.
+	- los headers se consultaron de la documentación de la API (https://developers.themoviedb.org/3/getting-started/authentication).
+	*/
 	return fetch(api_url + config, {
 		headers: {
 			Authorization:
