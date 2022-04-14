@@ -1,8 +1,10 @@
 import styles from './MovieCard.module.css';
+import thumb from './movie_thumb.jpg';
 import { Link } from 'react-router-dom';
 
 const MovieCard = ({ movie }) => {
-	const imgUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+	const imgUrl = movie.poster_path ? 'https://image.tmdb.org/t/p/w500' + movie.poster_path : thumb;
+
 	return (
 		<li className={styles.movie_card}>
 			<Link to={'/movie/' + movie.id}>
