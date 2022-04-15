@@ -1,12 +1,14 @@
 import React from 'react';
+
 import MovieCard from './MovieCard';
 // import movies from '../movies.json';
 import styles from './MoviesGrid.module.css';
 import { useEffect, useState } from 'react';
 import { apiCall } from '../functions/apicall';
 import Spinner from './Spinner';
-import { useLocation } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useLocation } from 'react-router-dom';
+import { useQuery } from '../hooks/useQuery';
 
 const MoviesGrid = () => {
 	/* 
@@ -17,15 +19,6 @@ const MoviesGrid = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [page, setPage] = useState(1);
 	const [hasMore, setHasMore] = useState(true);
-
-	// A custom hook that builds on useLocation to parse
-	// the query string for you.
-	function useQuery() {
-		/* Obtiene el valor en la URL que modifico useHistory */
-		const { search } = useLocation();
-
-		return React.useMemo(() => new URLSearchParams(search), [search]);
-	}
 
 	/* query es un objeto que devuelve solo el valor de search=valor de la URL con el método get() */
 	const query = useQuery();
