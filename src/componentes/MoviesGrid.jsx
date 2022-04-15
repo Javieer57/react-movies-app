@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { apiCall } from '../functions/apicall';
 import Spinner from './Spinner';
 import { useLocation } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const MoviesGrid = () => {
 	/* 
@@ -14,6 +15,8 @@ const MoviesGrid = () => {
 	3- Se renderiza el componente usando la información en movies */
 	const [movies, getMovies] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
+	const [page, setPage] = useState(1);
+	const [hasMore, setHasMore] = useState(true);
 
 	// A custom hook that builds on useLocation to parse
 	// the query string for you.
@@ -28,26 +31,36 @@ const MoviesGrid = () => {
 	const query = useQuery();
 	const search = query.get('search');
 
-	// ;
+	/* concatena la búsqueda nueva con lo que se tiene anteriormente lo cual combina dos búsquedas */
 	useEffect(() => {
 		setIsLoading(true);
-		const urlSearch = !search ? '/discover/movie/' : '/search/movie/?query=' + search;
+		const urlSearch = !search ? '/discover/movie?page=' + page : '/search/movie?query=' + search + '&page=' + page;
 		apiCall(urlSearch).then((data) => {
 			setIsLoading(false);
-			getMovies(data.results);
+			getMovies((prevMovies) => prevMovies.concat(data.results));
+			setHasMore(data.page < data.total_pages);
 		});
-	}, [search]);
+	}, [search, page]);
 
-	if (isLoading) {
-		return <Spinner />;
-	}
+	/* Se agrega como propiedad de InfiniteScroll */
+	// if (isLoading) {
+	// 	return <Spinner />;
+	// }
 
 	return (
-		<ul className={styles.movies_grid}>
-			{movies.map((movie) => (
-				<MovieCard movie={movie} key={movie.id} />
-			))}
-		</ul>
+		<InfiniteScroll
+			dataLength={movies.length}
+			hasMore={hasMore}
+			next={() => {
+				setPage((prevPage) => prevPage + 1);
+			}}
+			loader={<Spinner />}>
+			<ul className={styles.movies_grid}>
+				{movies.map((movie) => (
+					<MovieCard movie={movie} key={movie.id} />
+				))}
+			</ul>
+		</InfiniteScroll>
 	);
 };
 

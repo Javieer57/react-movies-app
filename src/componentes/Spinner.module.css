@@ -1,5 +1,8 @@
+/* el margin 50px evita que los cambios en el tamaño del spinner afecte al contenedor y no cree un overflow aunque no estoy seguro porqué ya que transform rotate no afectaba el tamaño del contendor, según yo */
+
 .spinner {
 	text-align: center;
+	margin: 50px;
 }
 
 .loader {
