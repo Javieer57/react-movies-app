@@ -1,31 +1,16 @@
-import styles from './Landing.module.css';
-
 import MoviesGrid from '../componentes/MoviesGrid';
-import Movie from '../paginas/Movie';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Search from '../componentes/Search';
+import { useQuery } from '../hooks/useQuery';
 
 const Landing = () => {
+	/* query es un objeto que devuelve solo el valor de search=valor de la URL con el método get() */
+	const query = useQuery();
+	const search = query.get('search');
 	return (
-		<Router>
-			<header className={styles.header + ' container'}>
-				<h1 className={styles.main_title}>
-					<Link to='/'>Movies</Link>
-				</h1>
-
-				<Search />
-			</header>
-			<main className='container'>
-				<Switch>
-					<Route path='/movie/:movieId'>
-						<Movie />
-					</Route>
-					<Route path='/'>
-						<MoviesGrid />
-					</Route>
-				</Switch>
-			</main>
-		</Router>
+		<>
+			<Search />
+			<MoviesGrid key={search} search={search} />
+		</>
 	);
 };
 

@@ -7,10 +7,8 @@ import { useEffect, useState } from 'react';
 import { apiCall } from '../functions/apicall';
 import Spinner from './Spinner';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useLocation } from 'react-router-dom';
-import { useQuery } from '../hooks/useQuery';
 
-const MoviesGrid = () => {
+const MoviesGrid = ({ search }) => {
 	/* 
 	1- La llamada a la API actualiza el estado y le da los valores obtenidos
 	2- El estado actualiza el componente
@@ -19,10 +17,6 @@ const MoviesGrid = () => {
 	const [isLoading, setIsLoading] = useState(true);
 	const [page, setPage] = useState(1);
 	const [hasMore, setHasMore] = useState(true);
-
-	/* query es un objeto que devuelve solo el valor de search=valor de la URL con el método get() */
-	const query = useQuery();
-	const search = query.get('search');
 
 	/* concatena la búsqueda nueva con lo que se tiene anteriormente lo cual combina dos búsquedas */
 	useEffect(() => {
