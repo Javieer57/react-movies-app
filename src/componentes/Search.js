@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useQuery } from '../hooks/useQuery';
 
 const Search = () => {
-	const [search, setSearch] = useState('');
 	const history = useHistory();
+	const query = useQuery();
+	const search = query.get('search');
 
 	/* Prevenimos que el formulario recargue la página */
 	const preventSubmit = (e) => {
 		e.preventDefault();
 
 		/* Se modifica la URL para que puedan verse y manipular los parámetros que tiene */
-		history.push('/?search=' + search);
+		// history.push('/?search=' + search);
 	};
 
 	return (
@@ -19,7 +21,8 @@ const Search = () => {
 				type='text'
 				value={search}
 				onChange={(e) => {
-					setSearch(e.target.value);
+					const search = e.target.value;
+					history.push('/?search=' + search);
 				}}
 			/>
 			<button type='submit'>Buscar</button>
