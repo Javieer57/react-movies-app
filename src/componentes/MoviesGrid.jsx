@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { apiCall } from '../functions/apicall';
 import Spinner from './Spinner';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import Empty from './Empty';
 
 const MoviesGrid = ({ search }) => {
 	/* 
@@ -33,6 +34,10 @@ const MoviesGrid = ({ search }) => {
 	// if (isLoading) {
 	// 	return <Spinner />;
 	// }
+
+	if (!isLoading && movies.length === 0) {
+		return <Empty />;
+	}
 
 	return (
 		<InfiniteScroll

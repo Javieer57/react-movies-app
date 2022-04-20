@@ -19,7 +19,7 @@ const Search = () => {
 		<form onSubmit={preventSubmit}>
 			<input
 				type='text'
-				value={search}
+				value={search ? search : ''}
 				onChange={(e) => {
 					const search = e.target.value;
 					history.push('/?search=' + search);
